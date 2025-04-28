@@ -42,7 +42,7 @@ export function fetchOrderTotal(id: number): number {
         0,
     )
 
-    return total
+    return Number(total.toFixed(2))
 }
 
 export function updateOrder(
