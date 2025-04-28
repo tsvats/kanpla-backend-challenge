@@ -1,5 +1,5 @@
 import type { Order } from './domains/order-management/order.types'
-import type { User } from './types'
+import type { User } from './domains/user-management/user.types'
 
 const seededOrders: Order[] = [
     {
