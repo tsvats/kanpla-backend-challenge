@@ -1,6 +1,7 @@
-import { Order, User } from './types'
+import type { Order } from './domains/order-management/order.types'
+import type { User } from './types'
 
-export const seededOrders: Order[] = [
+const seededOrders: Order[] = [
     {
         id: 1,
         userId: 'user1',
@@ -116,7 +117,7 @@ export const seededOrders: Order[] = [
     },
 ]
 
-export const seededUsers: User[] = [
+const seededUsers: User[] = [
     {
         id: 'user1',
         name: 'Alice',
@@ -136,3 +137,8 @@ export const seededUsers: User[] = [
         balance: 66.71,
     },
 ]
+
+export const database = {
+    orders: seededOrders,
+    users: seededUsers,
+}
