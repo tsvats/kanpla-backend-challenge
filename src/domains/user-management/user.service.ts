@@ -10,5 +10,5 @@ export function calculateUserBalance(userId: string) {
     if (balance < 0) {
         throw new Error('The balance is negative')
     }
-    return balance
+    return Number(balance.toFixed(2))
 }
