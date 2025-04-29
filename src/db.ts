@@ -1,5 +1,8 @@
 import type { Order } from './domains/order-management/order.types'
-import type { User } from './domains/user-management/user.types'
+import type {
+    User,
+    UserBalanceHistory,
+} from './domains/user-management/user.types'
 
 const seededOrders: Order[] = [
     {
@@ -138,7 +141,7 @@ const seededUsers: User[] = [
     },
 ]
 
-const userBalanceSnapshot = [
+const userBalanceHistory: UserBalanceHistory[] = [
     {
         date: new Date('2021-01-01T12:00:00Z'),
         userId: 'user1',
@@ -164,5 +167,5 @@ const userBalanceSnapshot = [
 export const database = {
     orders: seededOrders,
     users: seededUsers,
-    userBalanceSnapshot,
+    userBalanceHistory,
 }

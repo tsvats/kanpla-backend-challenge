@@ -1,4 +1,4 @@
-import type { User } from './user.types'
+import type { User, UserBalanceHistory } from './user.types'
 import { database } from '../../db'
 
 export const findUsers = (): User[] => database.users
@@ -35,4 +35,15 @@ export const deleteUser = (id: string): boolean => {
         return true
     }
     return false
+}
+
+export const findUserBalanceHistory = (
+    userId: string,
+    from: Date,
+    to: Date,
+): UserBalanceHistory[] => {
+    return database.userBalanceHistory.filter(balanceHistory => {
+        if (balanceHistory.userId !== userId) return false
+        return balanceHistory.date >= from && balanceHistory.date <= to
+    })
 }
