@@ -1,8 +1,6 @@
 import type { Order, Product } from './order.types'
 import { database } from '../../db'
 
-let currentId = 1
-
 export const findOrders = (): Order[] => database.orders
 
 export const findOrderById = (id: number): Order | undefined =>
@@ -10,7 +8,7 @@ export const findOrderById = (id: number): Order | undefined =>
 
 export const insertOrder = (userId: string, products: Product[]): Order => {
     const newOrder: Order = {
-        id: currentId++,
+        id: Math.floor(Math.random() * (100 - 10 + 1)) + 10,
         products,
         userId,
         createdAt: new Date(),
