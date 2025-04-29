@@ -1,8 +1,6 @@
 import type { User } from './user.types'
 import { database } from '../../db'
 
-let currentId = 1
-
 export const findUsers = (): User[] => database.users
 
 export const findUserById = (id: string): User | undefined =>
@@ -10,7 +8,7 @@ export const findUserById = (id: string): User | undefined =>
 
 export const inseryUser = (name: string, balance: number = 0): User => {
     const newUser: User = {
-        id: `user${currentId++}`,
+        id: `user${Math.floor(Math.random() * (100 - 10 + 1)) + 10}`,
         name,
         balance,
     }

@@ -1,6 +1,6 @@
 import { findOrders } from './order.repository'
 import { fetchOrders } from './order.service'
-import { Order } from './order.types'
+import type { Order } from './order.types'
 
 jest.mock('./order.repository')
 
