@@ -4,6 +4,7 @@ import swagger from '@fastify/swagger'
 import swaggerUI from '@fastify/swagger-ui'
 import path from 'path'
 import orderRoutes from './domains/order-management/order.routes'
+import userRoutes from './domains/user-management/user.routes'
 
 const server = fastify({ logger: true })
 
@@ -38,6 +39,8 @@ server.register(swaggerUI, {
 })
 
 server.register(orderRoutes, { prefix: '/orders' })
+
+server.register(userRoutes, { prefix: '/users' })
 
 const start = async () => {
     try {

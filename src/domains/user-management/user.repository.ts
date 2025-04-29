@@ -6,7 +6,7 @@ export const findUsers = (): User[] => database.users
 export const findUserById = (id: string): User | undefined =>
     database.users.find(user => user.id === id)
 
-export const inseryUser = (name: string, balance: number = 0): User => {
+export const insertUser = (name: string, balance: number = 0): User => {
     const newUser: User = {
         id: `user${Math.floor(Math.random() * (100 - 10 + 1)) + 10}`,
         name,
