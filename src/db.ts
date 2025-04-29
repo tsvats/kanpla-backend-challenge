@@ -138,7 +138,31 @@ const seededUsers: User[] = [
     },
 ]
 
+const userBalanceSnapshot = [
+    {
+        date: new Date('2021-01-01T12:00:00Z'),
+        userId: 'user1',
+        balance: 9.21,
+    },
+    {
+        date: new Date('2021-01-01T12:00:00Z'),
+        userId: 'user2',
+        balance: 0,
+    },
+    {
+        date: new Date('2021-01-01T12:00:00Z'),
+        userId: 'user3',
+        balance: 66.71,
+    },
+    {
+        date: new Date('2021-01-01T12:00:00Z'),
+        userId: 'user1',
+        balance: 10.21,
+    },
+]
+
 export const database = {
     orders: seededOrders,
     users: seededUsers,
+    userBalanceSnapshot,
 }
