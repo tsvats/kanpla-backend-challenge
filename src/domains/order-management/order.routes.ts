@@ -27,10 +27,11 @@ export default async function orderRoutes(server: FastifyInstance) {
         return { total }
     })
 
-    server.post('/', async request => {
+    server.post('/', async (request, reply) => {
         const { userId, products } = request.body as Order
         const order = createOrder(userId, products)
-        return { order }
+
+        reply.status(201).send({ order })
     })
 
     server.put('/:id', async request => {
