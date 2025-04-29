@@ -17,23 +17,27 @@ export default async function orderRoutes(server: FastifyInstance) {
 
     server.get('/:id', async request => {
         const { id } = request.params as { id: string }
-        return fetchOrderById(parseInt(id, 10))
+        const order = fetchOrderById(parseInt(id, 10))
+        return { order }
     })
 
     server.get('/:id/order-total', async request => {
         const { id } = request.params as { id: string }
-        return fetchOrderTotal(parseInt(id, 10))
+        const total = fetchOrderTotal(parseInt(id, 10))
+        return { total }
     })
 
     server.post('/', async request => {
         const { userId, products } = request.body as Order
-        return createOrder(userId, products)
+        const order = createOrder(userId, products)
+        return { order }
     })
 
     server.put('/:id', async request => {
         const { id } = request.params as { id: string }
         const updatedOrder = request.body as Partial<Order>
-        return updateOrder(parseInt(id, 10), updatedOrder)
+        const order = updateOrder(parseInt(id, 10), updatedOrder)
+        return { order }
     })
 
     server.delete('/:id', async (request, reply) => {
