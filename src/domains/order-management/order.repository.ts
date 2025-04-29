@@ -1,12 +1,15 @@
 import type { Order, Product } from './order.types'
 import { database } from '../../db'
 
-export const findOrders = (): Order[] => database.orders
+export function findOrders(): Order[] {
+    return database.orders
+}
 
-export const findOrderById = (id: number): Order | undefined =>
-    database.orders.find(order => order.id === id)
+export function findOrderById(id: number): Order | undefined {
+    return database.orders.find(order => order.id === id)
+}
 
-export const insertOrder = (userId: string, products: Product[]): Order => {
+export function insertOrder(userId: string, products: Product[]): Order {
     const newOrder: Order = {
         id: Math.floor(Math.random() * (100 - 10 + 1)) + 10,
         products,
@@ -17,10 +20,10 @@ export const insertOrder = (userId: string, products: Product[]): Order => {
     return newOrder
 }
 
-export const updateOrderById = (
+export function updateOrderById(
     id: number,
     updatedOrder: Partial<Order>,
-): Order | undefined => {
+): Order | undefined {
     const order = database.orders.find(order => order.id === id)
     if (!order) {
         return
@@ -29,7 +32,7 @@ export const updateOrderById = (
     return order
 }
 
-export const deleteOrderById = (id: number): boolean => {
+export function deleteOrderById(id: number): boolean {
     const orderIndex = database.orders.findIndex(order => order.id === id)
     if (orderIndex !== -1) {
         database.orders.splice(orderIndex, 1)
@@ -38,5 +41,16 @@ export const deleteOrderById = (id: number): boolean => {
     return false
 }
 
-export const findOrdersByUserId = (userId: string): Order[] =>
-    database.orders.filter(order => order.userId === userId)
+export function findOrdersByUserId(userId: string): Order[] {
+    return database.orders.filter(order => order.userId === userId)
+}
+
+export function findProductsSumByUserId(userId: string): number {
+    const orders = findOrdersByUserId(userId)
+    return Number(
+        orders
+            .flatMap(order => order.products)
+            .reduce((acc, product) => acc + product.price * product.count, 0)
+            .toFixed(2),
+    )
+}
