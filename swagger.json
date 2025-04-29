@@ -215,6 +215,42 @@
                     }
                 }
             }
+        },
+        "/admin/users/{userId}/balance/history": {
+            "get": {
+                "summary": "Get the user balance history by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User balance history found"
+                    }
+                }
+            }
         }
     },
     "components": {
