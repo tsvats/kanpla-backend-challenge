@@ -6,7 +6,8 @@
     "scripts": {
         "start": "ts-node src/index.ts",
         "build": "tsc",
-        "start:prod": "node dist/index.js"
+        "start:prod": "node dist/index.js",
+        "test": "jest"
     },
     "author": "",
     "license": "ISC",
