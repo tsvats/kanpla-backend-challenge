@@ -195,6 +195,26 @@
                     }
                 }
             }
+        },
+        "/admin/users/{userId}/balance": {
+            "get": {
+                "summary": "Get the user balance by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User balance found"
+                    }
+                }
+            }
         }
     },
     "components": {
