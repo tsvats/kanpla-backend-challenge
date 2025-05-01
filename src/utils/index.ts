@@ -1,6 +1,6 @@
 import { parse, isValid, endOfYear, endOfDay } from 'date-fns'
 
-function parseWithFormats(
+export function parseWithFormats(
     dateString: string,
     formats: string[],
 ): { date: Date; format: string } | null {
