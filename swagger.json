@@ -251,6 +251,34 @@
                     }
                 }
             }
+        },
+        "/admin/users/{userId}/balance-at-date": {
+            "get": {
+                "summary": "Get the user balance at a specific date",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User balance at a specific date found"
+                    }
+                }
+            }
         }
     },
     "components": {

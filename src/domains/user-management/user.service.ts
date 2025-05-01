@@ -21,3 +21,11 @@ export function fetchUserBalanceHistory(userId: string, from: Date, to: Date) {
     }
     return findUserBalanceHistory(userId, from, to)
 }
+
+export function fetchUserById(userId: string) {
+    const user = findUserById(userId)
+    if (!user) {
+        throw new Error('The user not found')
+    }
+    return user
+}

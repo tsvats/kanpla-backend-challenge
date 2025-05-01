@@ -3,7 +3,8 @@ import { calculateUserBalance } from '../user-management/user.service'
 import { fetchUserBalanceHistory } from '../user-management/user.service'
 import { authenticate } from '../../middlewares/authenticaton'
 import { userHasAdminAccess } from '../../middlewares/admin-access'
-import { parseDateRange } from '../../utils'
+import { parseDateRange, parseWithFormats } from '../../utils'
+import { calculateUserBalanceByOrderHistory } from './admin.service'
 
 export default async function adminRoutes(server: FastifyInstance) {
     server.get(
@@ -42,6 +43,32 @@ export default async function adminRoutes(server: FastifyInstance) {
                 dateRange.to,
             )
             return { balanceHistory }
+        },
+    )
+
+    server.get(
+        '/users/:userId/balance-at-date',
+        { preHandler: [authenticate, userHasAdminAccess] },
+        async (request, reply) => {
+            const { userId } = request.params as { userId: string }
+            const { date } = request.query as {
+                date: string
+            }
+
+            const parsedDate = parseWithFormats(date, [
+                'yyyy-MM-dd',
+                'dd-MM-yyyy',
+                'yyyy',
+            ])
+            if (!parsedDate) {
+                reply.status(400).send({ message: 'Invalid date is provided' })
+                return
+            }
+            const balance = calculateUserBalanceByOrderHistory(
+                userId,
+                parsedDate.date,
+            )
+            return { balance }
         },
     )
 }

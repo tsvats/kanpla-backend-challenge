@@ -6,6 +6,7 @@ import {
     deleteOrderById,
     updateOrderById,
     findProductsSumByUserId,
+    findTotalSpentAfterDate,
 } from './order.repository'
 import { Order, Product } from './order.types'
 
@@ -59,4 +60,11 @@ export function deleteOrder(id: number): boolean {
 
 export function calculateOrdersSumByUserId(userId: string): number {
     return findProductsSumByUserId(userId)
+}
+
+export function calculateTotalSpentAfterSpecificDate(
+    userId: string,
+    date: Date,
+): number {
+    return findTotalSpentAfterDate(userId, date)
 }

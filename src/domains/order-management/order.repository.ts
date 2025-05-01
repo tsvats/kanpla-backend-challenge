@@ -54,3 +54,15 @@ export function findProductsSumByUserId(userId: string): number {
             .toFixed(2),
     )
 }
+
+export function findTotalSpentAfterDate(userId: string, date: Date): number {
+    return database.orders
+        .filter(order => order.userId === userId && order.createdAt > date)
+        .reduce((total, order) => {
+            const orderTotal = order.products.reduce(
+                (sum, product) => sum + product.price * product.count,
+                0,
+            )
+            return total + orderTotal
+        }, 0)
+}
